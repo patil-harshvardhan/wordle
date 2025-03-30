@@ -1,23 +1,23 @@
-import { useEffect } from 'preact/hooks'
+import { useEffect, useState } from 'preact/hooks'
 import './app.css'
+import words from './words.json'
 
 export function App() {
 
-  const getWord = async () : Promise<void> => {
-    const response = await fetch(
-      "https://api.frontendexpert.io/api/fe/wordle-words"
-    );
-    const json = await response.json();
-    console.log(json)
+  const [word,setWord] = useState<string>("")
+
+  const getWord = () : string => {
+    const n = words.length;
+    return words[ Math.floor( Math.random() * n ) ]
   }
 
   useEffect(() => {
-    getWord()
+    setWord(getWord())
   },[])
 
   return (
     <>
-      <div>Hello</div>
+      <div>{word}</div>
     </>
   )
 }
