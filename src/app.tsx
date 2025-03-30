@@ -13,6 +13,11 @@ export function App() {
 
   useEffect(() => {
     setWord(getWord())
+    window.onkeydown = (e : KeyboardEvent) =>  {
+      if (/^[a-zA-Z]$/.test(e.key)) {
+        console.log("Alphabet key pressed:", e.key);
+      }
+    }
   },[])
 
   return (
